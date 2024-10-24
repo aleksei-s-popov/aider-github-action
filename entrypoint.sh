@@ -25,6 +25,8 @@ git checkout $BRANCH_NAME
 # Parse and execute each aider command from the JSON array
 echo "$AIDER_MESSAGE_LIST" | jq -r '.[]' | while read -r command; do
     # Run aider command
+    echo $command
+    echo "aider --model $MODEL $AIDER_ARGS  --message $command"
     eval "aider --model $MODEL $AIDER_ARGS  --message $command"
 done
 
