@@ -37,8 +37,10 @@ inputs:
     description: "Branch to run Aider on"
     default: "main"
     required: false
-  aider_args_list:
-    description: "JSON array of Aider commands to run sequentially (e.g. '[\"--yes --message 'Fix bug'\", \"--yes --message 'Add tests'\"]')"
+  aider_args:
+    description: "Aider command parameters to use with each run (e.g. '--yes')"
+  aider_message_list:
+    description: "JSON array of messages to pass to Aider to run sequentially (e.g. '[\"Fix bug\", \"Add tests\"]')"
     required: true
 
 runs:
@@ -54,7 +56,8 @@ runs:
     OPENROUTER_API_KEY: ${{ inputs.openrouter_api_key }}
     FEATURE_REF: ${{ inputs.branch }}
     MODEL: ${{ inputs.model }}
-    AIDER_ARGS_LIST: ${{ inputs.aider_args_list }}
+    AIDER_ARGS: ${{ inputs.aider_args }}
+    AIDER_MESSAGE_LIST: ${{ inputs.aider_message_list }}
 
 branding:
   icon: "cpu"
