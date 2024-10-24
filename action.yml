@@ -37,8 +37,8 @@ inputs:
     description: "Branch to run Aider on"
     default: "main"
     required: false
-  aider_args:
-    description: "Space-delimited args to pass to aider (e.g. --yes --message 'Make the dashboard sidebar purple')"
+  aider_args_list:
+    description: "JSON array of Aider commands to run sequentially (e.g. '[\"--yes --message 'Fix bug'\", \"--yes --message 'Add tests'\"]')"
     required: true
 
 runs:
@@ -54,7 +54,7 @@ runs:
     OPENROUTER_API_KEY: ${{ inputs.openrouter_api_key }}
     FEATURE_REF: ${{ inputs.branch }}
     MODEL: ${{ inputs.model }}
-    AIDER_ARGS: ${{ inputs.aider_args }}
+    AIDER_ARGS_LIST: ${{ inputs.aider_args_list }}
 
 branding:
   icon: "cpu"

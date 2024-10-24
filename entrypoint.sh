@@ -22,8 +22,11 @@ git config --global user.name "github-actions[bot]"
 git fetch
 git checkout $BRANCH_NAME
 
-# Run aider command
-eval "aider --model $MODEL $AIDER_ARGS"
+# Parse and execute each aider command from the JSON array
+echo "$AIDER_ARGS_LIST" | jq -r '.[]' | while read -r command; do
+    # Run aider command
+    eval "aider --model $MODEL $command"
+done
 
 # Push changes
 git push -u origin $BRANCH_NAME
